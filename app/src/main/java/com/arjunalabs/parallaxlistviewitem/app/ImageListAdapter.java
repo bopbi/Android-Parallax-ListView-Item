@@ -36,15 +36,33 @@ public class ImageListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ImageView imageView = new ImageView(context);
-        imageView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 300));
-        imageView.setAdjustViewBounds(true);
-        imageView.setScaleType(ImageView.ScaleType.MATRIX);
-        Matrix matrix = imageView.getImageMatrix();
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            ImageView imageView = new ImageView(context);
+            imageView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 300));
+            imageView.setAdjustViewBounds(true);
+            imageView.setScaleType(ImageView.ScaleType.MATRIX);
+            Matrix matrix = imageView.getImageMatrix();
+            matrix.postTranslate(0, -100);
+            imageView.setImageMatrix(matrix);
+            imageView.setImageResource(R.drawable.lorempixel);
+            viewHolder = new ViewHolder();
+            convertView = imageView;
+            viewHolder.imageView = imageView;
+            convertView.setTag(viewHolder);
+        }
+        viewHolder = (ViewHolder) convertView.getTag();
+        Matrix matrix = viewHolder.imageView.getImageMatrix();
+        matrix.reset();
         matrix.postTranslate(0, -100);
-        imageView.setImageMatrix(matrix);
-        imageView.setImageResource(R.drawable.lorempixel);
-        return imageView;
+        viewHolder.imageView.setImageMatrix(matrix);
+
+        return convertView;
     }
+
+    static class ViewHolder {
+        ImageView imageView;
+    }
+
 }
