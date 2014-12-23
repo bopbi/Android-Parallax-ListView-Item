@@ -46,7 +46,13 @@ public class ImageListAdapter extends BaseAdapter {
             Matrix matrix = imageView.getImageMatrix();
             matrix.postTranslate(0, -100);
             imageView.setImageMatrix(matrix);
-            imageView.setImageResource(R.drawable.lorempixel);
+            if (position % 2 == 0) {
+                imageView.setImageResource(R.drawable.lorempixel2);
+            } else if (position % 3 == 0) {
+                imageView.setImageResource(R.drawable.lorempixel3);
+            } else {
+                imageView.setImageResource(R.drawable.lorempixel);
+            }
             viewHolder = new ViewHolder();
             convertView = imageView;
             viewHolder.imageView = imageView;
