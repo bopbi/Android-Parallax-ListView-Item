@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
                 int first = baseListView.getFirstVisiblePosition();
                 int last = baseListView.getLastVisiblePosition();
                 for (int i = 0; i < (last - first); i++) {
-                    ImageView imageView = (ImageView) baseListView.getChildAt(i);
+                    ImageView imageView = (ImageView) baseListView.getChildAt(i).findViewById(R.id.image);
                     imageMatrix = imageView.getImageMatrix();
                     imageMatrix.postTranslate(0, -0.5f);
                     imageView.setImageMatrix(imageMatrix);
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
                 int first = baseListView.getFirstVisiblePosition();
                 int last = baseListView.getLastVisiblePosition();
                 for (int i = 0; i < (last - first); i++) {
-                    ImageView imageView = (ImageView) baseListView.getChildAt(i);
+                    ImageView imageView = (ImageView) baseListView.getChildAt(i).findViewById(R.id.image);
                     imageMatrix = imageView.getImageMatrix();
                     imageMatrix.postTranslate(0, 0.5f);
                     imageView.setImageMatrix(imageMatrix);
