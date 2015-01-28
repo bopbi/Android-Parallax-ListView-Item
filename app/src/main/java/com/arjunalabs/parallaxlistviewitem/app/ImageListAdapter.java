@@ -45,9 +45,6 @@ public class ImageListAdapter extends BaseAdapter {
             ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
             TextView textView = (TextView) convertView.findViewById(R.id.text);
             imageView.setScaleType(ImageView.ScaleType.MATRIX);
-            Matrix matrix = imageView.getImageMatrix();
-            matrix.postTranslate(0, -100);
-            imageView.setImageMatrix(matrix);
             if (position % 2 == 0) {
                 imageView.setImageResource(R.drawable.lorempixel2);
             } else if (position % 3 == 0) {
@@ -55,16 +52,15 @@ public class ImageListAdapter extends BaseAdapter {
             } else {
                 imageView.setImageResource(R.drawable.lorempixel);
             }
+            Matrix matrix = imageView.getImageMatrix();
+            matrix.postTranslate(0, -100);
+            imageView.setImageMatrix(matrix);
             viewHolder = new ViewHolder();
             viewHolder.imageView = imageView;
             viewHolder.textView = textView;
             convertView.setTag(viewHolder);
         }
         viewHolder = (ViewHolder) convertView.getTag();
-        Matrix matrix = viewHolder.imageView.getImageMatrix();
-        matrix.reset();
-        matrix.postTranslate(0, -100);
-        viewHolder.imageView.setImageMatrix(matrix);
         viewHolder.textView.setText("Row "+ position);
         return convertView;
     }
