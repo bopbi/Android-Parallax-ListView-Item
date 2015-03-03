@@ -41,10 +41,14 @@ public class ImageListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if (convertView == null) {
+            // this is call when new view
+            
             convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null, false);
             ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
             TextView textView = (TextView) convertView.findViewById(R.id.text);
             imageView.setScaleType(ImageView.ScaleType.MATRIX);
+
+            // hardcode the background image
             if (position % 2 == 0) {
                 imageView.setImageResource(R.drawable.lorempixel2);
             } else if (position % 3 == 0) {
@@ -52,9 +56,12 @@ public class ImageListAdapter extends BaseAdapter {
             } else {
                 imageView.setImageResource(R.drawable.lorempixel);
             }
+            // since the image size is set to 400 x 300 we will hardcode the initial translation to the center for new item
             Matrix matrix = imageView.getImageMatrix();
             matrix.postTranslate(0, -100);
             imageView.setImageMatrix(matrix);
+
+            // use the viewholder
             viewHolder = new ViewHolder();
             viewHolder.imageView = imageView;
             viewHolder.textView = textView;
